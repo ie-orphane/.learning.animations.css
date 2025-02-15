@@ -1,0 +1,15 @@
+.flex {
+    display: flex;
+}
+
+.gap-1 {
+    gap: 1rem;
+}
+
+.flex-1\/2>* {
+    flex: 50%;
+}
+
+.flex-col {
+    flex-direction: column;
+}

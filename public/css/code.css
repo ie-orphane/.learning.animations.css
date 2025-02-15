@@ -1,0 +1,129 @@
+.code-block {
+    border-radius: .25rem;
+    color: #333333;
+    border: 1px solid #e1e4e8;
+    overflow: hidden;
+}
+
+.code-block.dynamic {
+    position: relative;
+    width: 32.5vw;
+    height: 50vh;
+}
+
+.code-block .header {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .75rem 1.25rem;
+    border-bottom: 1px solid #e1e4e8;
+
+    .icon {
+        width: 16px;
+        height: 16px;
+        fill: #333333;
+    }
+
+    .title {
+        font-weight: normal;
+        font-size: small;
+        margin: 0;
+    }
+
+    .title::selection {
+        background-color: #5779FF;
+        color: white;
+    }
+}
+
+.code-block .highlighted {
+    background-color: rgba(255, 221, 87, .03125);
+}
+
+.code-block:not(.dynamic) .highlighted {
+    width: 100%;
+    display: inline-block;
+}
+
+.code-block .output {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 89%;
+    outline: none;
+}
+
+
+.editor,
+.highlighted,
+.highlighted * {
+    font-size: small;
+}
+
+.highlighted::selection,
+.highlighted ::selection,
+.editor::selection,
+.editor ::selection {
+    background-color: #c8c8fa;
+    color: #333333;
+}
+
+.highlighted,
+.editor {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 1rem;
+    overflow: auto;
+    tab-size: 2;
+}
+
+.dynamic:is(.highlighted,
+    .editor) {
+    position: absolute;
+    inset: 0;
+}
+
+.dynamic .highlighted {
+    z-index: 0;
+}
+
+.dynamic .editor {
+    color: transparent;
+    background: transparent;
+    caret-color: black;
+
+    outline: none;
+    resize: none;
+    border: none;
+
+    z-index: 1;
+}
+
+.selector,
+.tag {
+    color: #a71d5d;
+}
+
+.hex-color {
+    color: #ed6a43;
+}
+
+.property {
+    color: #795da3;
+}
+
+.number,
+.number-with-unit,
+.attribute {
+    color: #0086b3;
+}
+
+.function,
+.at-rule,
+.value {
+    color: #183691;
+}
+
+.bracket {
+    color: #969896;
+}
