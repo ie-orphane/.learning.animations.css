@@ -21,17 +21,51 @@ function highlight(lang, code) {
     }
 }
 
-document.querySelectorAll(".code-block.input").forEach(
-    ele => {
-        ele.querySelector("code.highlighted").innerHTML = highlight(
-            ele.dataset?.lang,
-            ele.querySelector("textarea.editor")?.dataset?.code?.replace(/\\n/g, '\n').replace(/\\t/g, '\t')
+document.querySelectorAll("textarea.editor").forEach(
+    textarea => {
+        if (
+            !textarea.nextElementSibling.classList.contains("highlighted") ||
+            textarea.nextElementSibling.tagName != "CODE"
+        ) return
+
+        textarea.nextElementSibling.innerHTML = highlight(
+            textarea.dataset?.lang,
+            textarea.dataset?.code?.replace(/\\n/g, '\n').replace(/\\t/g, '\t')
         )
-        if (ele.dataset?.lang == "html") {
-            document.querySelector(`iframe#${ele.dataset?.target}`).contentDocument.body.innerHTML = ele.querySelector("code.highlighted").textContent
-        }
-        else if (ele.dataset?.lang == "css") {
-            document.querySelector(`iframe#${ele.dataset?.target}`).contentDocument.head.innerHTML = `<style>\n${ele.querySelector("code.highlighted").textContent}</style>`
-        }
+
+        if (!textarea.dataset?.target) return
+
+        textarea.dataset.target
+            .split(' ')
+            .filter(target => target != '')
+            .forEach(target => {
+                const iframe = document.querySelector(`iframe#${target}`);
+                if (!iframe) return
+                if (textarea.dataset?.lang == "html") {
+                    iframe.contentDocument.body.innerHTML = textarea.nextElementSibling.textContent
+                }
+                else if (textarea.dataset?.lang == "css") {
+                    iframe.contentDocument.head.innerHTML = `<style>\n${textarea.nextElementSibling.textContent}</style>`
+                }
+            })
     }
 )
+
+function show(ele) {
+    document.querySelectorAll(".file.multiple").forEach(ele => {
+        const code = document.querySelector(`code#${ele.dataset?.code}`)
+        const iframe = document.querySelector(`iframe#${ele.dataset?.iframe}`)
+        if (code && code.style.getPropertyValue("display") != "none") {
+            code.style.display = "none";
+        }
+        if (iframe && iframe.style.getPropertyValue("display") != "none") {
+            iframe.style.display = "none";
+        }
+        ele.classList.remove("selected")
+    })
+    const code = document.querySelector(`code#${ele.dataset?.code}`)
+    const iframe = document.querySelector(`iframe#${ele.dataset?.iframe}`)
+    code.style.display = null
+    iframe.style.display = null
+    ele.classList.add("selected")
+}

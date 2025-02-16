@@ -13,10 +13,32 @@
 
 .code-block .header {
     display: flex;
-    align-items: center;
-    gap: .5rem;
-    padding: .75rem 1.25rem;
     border-bottom: 1px solid #e1e4e8;
+
+    .file {
+        padding: .75rem 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        cursor: pointer;
+        border-right: 1px solid #e1e4e8;
+
+        &.selected {
+            position: relative;
+            background-color: #F9F8F4;
+
+            &::after {
+                content: "";
+                width: 100%;
+                height: 1px;
+                background-color: #F9F8F4;
+                position: absolute;
+                top: 100%;
+                left: 0;
+
+            }
+        }
+    }
 
     .icon {
         width: 16px;
@@ -49,10 +71,9 @@
     background-color: transparent;
     border: none;
     width: 100%;
-    height: 89%;
+    height: calc(100% - 40.59px);
     outline: none;
 }
-
 
 .editor,
 .highlighted,
