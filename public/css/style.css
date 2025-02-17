@@ -305,3 +305,59 @@ code.css {
         color: #DCA106;
     }
 }
+
+dialog#modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog#modal {
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    border: none;
+    background-color: #F9F9F9;
+    border-radius: 0.5rem;
+    padding: 1.75rem;
+}
+
+dialog#modal header .hint-title span {
+    background-color: #FFDD57;
+    color: #2D2D2D;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+}
+
+button:is(.close-btn, .open-btn) {
+    border: none;
+    outline: none;
+    margin-left: auto;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+dialog#modal header button.close-btn {
+    svg {
+        width: 18px;
+        height: 18px;
+        margin-left: 1rem;
+        translate: 0 -50%;
+    }
+}
+
+.hint-description {
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 15px;
+    color: hsl(240, 3.8%, 46.1%);
+}
+
+dialog#modal .footer .btn-close {
+    background-color: #eeeeee;
+    padding: .75rem 1.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    outline: none;
+    float: right;
+    cursor: pointer;
+}

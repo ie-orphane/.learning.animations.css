@@ -4,19 +4,19 @@ function highlight(lang, code) {
     }
     if (lang == "html") {
         return code.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/(&lt;)(\/?[a-zA-Z0-9]+)(.*?)(&gt;)/g, (match, open, tag, attr, close) => {
-            attr = attr.replace(/([a-zA-Z-]+)(=)(["'])(.*?)(["'])/g, '<span class="attribute">$1</span>$2<span class="value">$3$4$5</span>');
-            return `<span class="bracket">${open}</span><span class="tag">${tag}</span>${attr}<span class="bracket">${close}</span>`;
+            attr = attr.replace(/([a-zA-Z-]+)(=)(["'])(.*?)(["'])/g, '<span class="html-attribute">$1</span>$2<span class="html-value">$3$4$5</span>');
+            return `<span class="html-bracket">${open}</span><span class="html-tag">${tag}</span>${attr}<span class="html-bracket">${close}</span>`;
         });
     }
     if (lang == "css") {
         return (
             code
-                .replace(/(\d+(\.\d+)?[a-zA-Z%]+)/g, '<span class="number-with-unit">$1</span>')
-                .replace(/#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g, '<span class="hex-color">$&</span>')
-                .replace(/([#\.a-zA-Z0-9\-]+(?=\s*\{))/g, '<span class="selector">$1</span>')
-                .replace(/\b([a-zA-Z\-]+)(?=\s*:)/g, '<span class="property">$1</span>')
-                .replace(/([a-zA-Z\-]+(?=\s*\())/g, '<span class="function">$1</span>')
-                .replace(/(@[a-zA-Z\-]+)(?=\s)/g, '<span class="at-rule">$1</span>')
+                .replace(/(\d+(\.\d+)?[a-zA-Z%]+)/g, '<span class="css-number-with-unit">$1</span>')
+                .replace(/#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g, '<span class="css-hex-color">$&</span>')
+                .replace(/([#\.a-zA-Z0-9\-]+(?=\s*\{))/g, '<span class="css-selector">$1</span>')
+                .replace(/\b([a-zA-Z\-]+)(?=\s*:)/g, '<span class="css-property">$1</span>')
+                .replace(/([a-zA-Z\-]+(?=\s*\())/g, '<span class="css-function">$1</span>')
+                .replace(/(@[a-zA-Z\-]+)(?=\s)/g, '<span class="css-at-rule">$1</span>')
         )
     }
 }
@@ -78,10 +78,6 @@ function sync_scroll(textarea) {
 }
 
 function check_tab(textarea, event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        autoIndentOnEnter(textarea);
-    }
     if (event.key == "Tab") {
         event.preventDefault();
         let before_tab = textarea.value.slice(0, textarea.selectionStart);
@@ -92,27 +88,6 @@ function check_tab(textarea, event) {
         textarea.selectionEnd = cursor_pos;
         update(textarea);
     }
-}
-
-function autoIndentOnEnter(textarea) {
-    const startPos = textarea.selectionStart;
-    const endPos = textarea.selectionEnd;
-    const value = textarea.value;
-    const textBeforeCursor = value.substring(0, startPos);
-    const currentLine = textBeforeCursor.split('\n').pop();
-    let indentation = currentLine.match(/^\t*/)[0];
-    if (currentLine.trim().endsWith('{')) {
-        indentation += '\t';
-    }
-    const textAfterCursor = value.substring(endPos);
-    const nextLine = textAfterCursor.split('\n')[0];
-    if (nextLine.trim().startsWith('}')) {
-        indentation = indentation.slice(0, -1);
-    }
-    const newText = value.substring(0, startPos) + '\n' + indentation + value.substring(endPos);
-    textarea.value = newText;
-    const newCursorPos = startPos + 1 + indentation.length;
-    textarea.setSelectionRange(newCursorPos, newCursorPos);
 }
 
 function update(textarea) {

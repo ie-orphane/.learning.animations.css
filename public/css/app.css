@@ -6,6 +6,10 @@
     gap: 1rem;
 }
 
+.gap-1\.5 {
+    gap: 1.5rem;
+}
+
 .flex-1\/2>* {
     flex: 50%;
 }

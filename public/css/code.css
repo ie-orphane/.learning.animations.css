@@ -128,31 +128,31 @@
     z-index: 1;
 }
 
-.selector,
-.tag {
+.css-selector,
+.html-tag {
     color: #a71d5d;
 }
 
-.hex-color {
+.css-hex-color {
     color: #ed6a43;
 }
 
-.property {
+.css-property {
     color: #795da3;
 }
 
-.number,
-.number-with-unit,
-.attribute {
+.css-number,
+.css-number-with-unit,
+.html-attribute {
     color: #0086b3;
 }
 
-.function,
-.at-rule,
-.value {
+.css-function,
+.css-at-rule,
+.html-value {
     color: #183691;
 }
 
-.bracket {
+.html-bracket {
     color: #969896;
 }

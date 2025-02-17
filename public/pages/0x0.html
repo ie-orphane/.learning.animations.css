@@ -12,10 +12,73 @@
 <body>
     <section id="hover-bg-color">
         <header>
-            <h2 class="title">Ex01: </h2>
+            <h2 class="title">Ex01: <span>Traffic light</span></h2>
         </header>
 
         <main>
+            <div class="container">
+                <h3>Path To follow</h3>
+                <ol data-highlight="css">
+                    <li>The <span class="css-property">size</span> of traffic light signal is <span
+                            class="css-number-with-unit">50px</span> by <span class="css-number-with-unit">50px</span>.
+                    </li>
+                    <li>The default <span class="css-property">background color</span> of traffic light signal is <span
+                            style="color: #e3e3e3;">#e3e3e3</span>.<sup class="base">
+                            <button id="show" class="open-btn" onclick="modal.showModal()">💡1</button>
+                            <dialog id="modal">
+                                <div class="box flex flex-col gap-1.5">
+                                    <header>
+                                        <div class="flex">
+                                            <h2 class="hint-title">hint 01: <span>variables</span> in css</h2>
+                                            <button class="close-btn" onclick="modal.close()"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="1.5" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M6 18 18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        </div>
+
+                                        <p class="hint-description">Think of CSS variables like reusable labels for
+                                            colors, sizes, ...;<br>They start with -- and are used with var().
+                                        </p>
+                                    </header>
+
+                                    <div class="hint-main">
+                                        <div class="code-block input">
+                                            <div class="header">
+                                                <div class="file selected">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon"
+                                                        viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M0 0v20.16A3.84 3.84 0 0 0 3.84 24h16.32A3.84 3.84 0 0 0 24 20.16V3.84A3.84 3.84 0 0 0 20.16 0Zm14.256 13.08c1.56 0 2.28 1.08 2.304 2.64h-1.608c.024-.288-.048-.6-.144-.84c-.096-.192-.288-.264-.552-.264c-.456 0-.696.264-.696.84c-.024.576.288.888.768 1.08c.72.288 1.608.744 1.92 1.296q.432.648.432 1.656c0 1.608-.912 2.592-2.496 2.592c-1.656 0-2.4-1.032-2.424-2.688h1.68c0 .792.264 1.176.792 1.176c.264 0 .456-.072.552-.24c.192-.312.24-1.176-.048-1.512c-.312-.408-.912-.6-1.32-.816q-.828-.396-1.224-.936c-.24-.36-.36-.888-.36-1.536c0-1.44.936-2.472 2.424-2.448m5.4 0c1.584 0 2.304 1.08 2.328 2.64h-1.608c0-.288-.048-.6-.168-.84c-.096-.192-.264-.264-.528-.264c-.48 0-.72.264-.72.84s.288.888.792 1.08c.696.288 1.608.744 1.92 1.296c.264.432.408.984.408 1.656c.024 1.608-.888 2.592-2.472 2.592c-1.68 0-2.424-1.056-2.448-2.688h1.68c0 .744.264 1.176.792 1.176c.264 0 .456-.072.552-.24c.216-.312.264-1.176-.048-1.512c-.288-.408-.888-.6-1.32-.816c-.552-.264-.96-.576-1.2-.936s-.36-.888-.36-1.536c-.024-1.44.912-2.472 2.4-2.448m-11.031.018c.711-.006 1.419.198 1.839.63c.432.432.672 1.128.648 1.992H9.336c.024-.456-.096-.792-.432-.96c-.312-.144-.768-.048-.888.24c-.12.264-.192.576-.168.864v3.504c0 .744.264 1.128.768 1.128a.65.65 0 0 0 .552-.264c.168-.24.192-.552.168-.84h1.776c.096 1.632-.984 2.712-2.568 2.688c-1.536 0-2.496-.864-2.472-2.472v-4.032c0-.816.24-1.44.696-1.848c.432-.408 1.146-.624 1.857-.63" />
+                                                    </svg>
+                                                    <h4 class="title">syntax.css</h4>
+                                                </div>
+                                            </div>
+
+                                            <textarea data-lang="css"
+                                                data-code=":root {\n\t--variable: value;\n}\n\nselector {\n\tproperty: var(--variable);\n}"
+                                                class="editor" hidden></textarea>
+                                            <code class="highlighted"></code>
+                                        </div>
+                                    </div>
+
+                                    <div class="footer">
+                                        <button class="btn-close" onclick="modal.close()">close</button>
+                                    </div>
+                                </div>
+                            </dialog>
+                            <!-- <script>
+                                show.click()
+                            </script> -->
+                        </sup></li>
+                    <li>The red lasts <span class="css-number-with-unit">15s</span> and the orange one lasts <span
+                            class="css-number-with-unit">5s</span>.</li>
+                    <li>There is a <span class="css-number-with-unit">15s</span> cooldown between green and orange.</li>
+                </ol>
+            </div>
+
             <div class="container">
                 <h3>Trail Markings</h3>
                 <div class="flex gap-1 flex-1/2">
@@ -32,7 +95,8 @@
                             </div>
 
                             <textarea data-lang="html" data-target="output"
-                                data-code="&lt;div id=&quot;box&quot;&gt;&lt;/div&gt;" class="editor" hidden></textarea>
+                                data-code="&lt;div id=&quot;traffic-lights&quot;&gt;\n\t&lt;div id=&quot;red&quot; style=&quot;--light-color: red;&quot;&gt;&lt;/div&gt;\n\t&lt;div id=&quot;orange&quot; style=&quot;--light-color: orange;&quot;&gt;&lt;/div&gt;\n\t&lt;div id=&quot;green&quot; style=&quot;--light-color: green;&quot;&gt;&lt;/div&gt;\n&lt;/div&gt;"
+                                class="editor" hidden></textarea>
                             <code class="highlighted"></code>
                         </div>
 
