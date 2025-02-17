@@ -67,6 +67,15 @@
     display: inline-block;
 }
 
+.code-block.dynamic .editor-block {
+    position: relative;
+    height: 100%;
+}
+
+.code-block.dynamic :is(.highlighted, .editor) {
+    height: 100%;
+}
+
 .code-block .output {
     background-color: transparent;
     border: none;
@@ -98,8 +107,7 @@
     tab-size: 2;
 }
 
-.dynamic:is(.highlighted,
-    .editor) {
+.dynamic :is(.highlighted, .editor) {
     position: absolute;
     inset: 0;
 }
