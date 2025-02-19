@@ -63,8 +63,12 @@ function show(ele) {
     })
     const code = document.querySelector(`code#${ele.dataset?.code}`)
     const iframe = document.querySelector(`iframe#${ele.dataset?.iframe}`)
-    code.style.display = null
-    iframe.style.display = null
+    if (code && code.style.getPropertyValue("display") == "none") {
+        code.style.display = null
+    }
+    if (iframe && iframe.style.getPropertyValue("display") == "none") {
+        iframe.style.display = null
+    }
     ele.classList.add("selected")
 }
 
@@ -98,7 +102,7 @@ function update(textarea) {
     textarea.nextElementSibling.innerHTML = highlight(
         textarea.dataset?.lang,
         textarea.value
-    )
+    ) + "\n"
     const iframe = document.querySelector(`iframe#${textarea.dataset.target}`);
     if (!iframe) return
     if (textarea.dataset?.lang == "html") {

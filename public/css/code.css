@@ -6,9 +6,10 @@
 }
 
 .code-block.dynamic {
-    position: relative;
     width: 32.5vw;
     height: 50vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .code-block .header {
@@ -103,7 +104,7 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     padding: 1rem;
-    overflow: auto;
+    overflow-y: auto;
     tab-size: 2;
 }
 

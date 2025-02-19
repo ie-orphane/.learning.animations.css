@@ -17,3 +17,7 @@
 .flex-col {
     flex-direction: column;
 }
+
+.flex-full {
+    flex: 100%;
+}
