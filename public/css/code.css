@@ -142,6 +142,10 @@
     color: #795da3;
 }
 
+.css-string {
+    color: #690;
+}
+
 .css-number,
 .css-number-with-unit,
 .html-attribute {
