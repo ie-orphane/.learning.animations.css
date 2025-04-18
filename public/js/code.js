@@ -112,3 +112,19 @@ function update(textarea) {
         iframe.contentDocument.head.innerHTML = `<style>\n${textarea.nextElementSibling.textContent}</style>`
     }
 }
+
+document.querySelectorAll("textarea.editor.cached").forEach(ele => {
+    if (!ele.dataset.key) {
+        console.warn("editor missing data-key", ele)
+        return;
+    }
+    ele.value = localStorage.getItem(ele.dataset.key) || '';
+    let timeout;
+    ele.addEventListener('input', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            localStorage.setItem(ele.dataset.key, ele.value);
+        }, 500);
+    });
+    update(ele);
+})
